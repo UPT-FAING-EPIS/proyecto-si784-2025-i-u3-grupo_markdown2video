@@ -1,0 +1,91 @@
+/* --- Estilos para el Modal de Expansión de Diagramas --- */
+
+.mermaid-container {
+  position: relative; /* Para posicionar el botón de expandir */
+  margin: 1.5em 0;
+  padding: 10px;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+}
+
+.mermaid-expand-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 1.2em; /* Tamaño del icono */
+  line-height: 1;
+  opacity: 0.5;
+  transition: opacity 0.2s, background-color 0.2s;
+}
+.mermaid-container:hover .mermaid-expand-btn {
+  opacity: 1;
+}
+.mermaid-expand-btn:hover {
+    background-color: #fff;
+}
+
+
+/* Estilos para el Modal a pantalla completa */
+.mermaid-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 37, 41, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001; /* Más alto que el otro modal */
+}
+
+.mermaid-modal-content {
+  width: 95%;
+  height: 95%;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.mermaid-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  z-index: 1002;
+}
+.mermaid-modal-close:hover {
+  opacity: 1;
+}
+
+.mermaid-modal-body {
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Permite hacer scroll si el diagrama es muy grande */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hacemos que el SVG dentro del modal ocupe todo el espacio posible */
+.mermaid-modal-body svg {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}

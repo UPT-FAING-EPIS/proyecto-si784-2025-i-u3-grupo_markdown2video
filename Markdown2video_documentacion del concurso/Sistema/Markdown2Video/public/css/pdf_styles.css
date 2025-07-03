@@ -1,0 +1,107 @@
+/* --- Estilos específicos para la generación de PDF con Dompdf (Márgenes ajustados) --- */
+
+/* La etiqueta @font-face es importante para que Dompdf encuentre la fuente */
+@font-face {
+    font-family: 'DejaVu Sans';
+    font-style: normal;
+    font-weight: normal;
+    src: url(https://example.com/fonts/DejaVuSans.ttf) format('truetype'); /* Dompdf lo reemplaza internamente */
+}
+
+/* public/css/pdf_styles.css */
+body {
+    font-family: 'DejaVu Sans', sans-serif;
+    font-size: 12pt;
+    line-height: 1.6;
+    
+    /* --- CORRECCIÓN: Márgenes personalizados --- */
+    /* Formato: arriba | derecha | abajo | izquierda */
+    margin: 0.2cm 1cm 1cm 1cm; 
+}
+
+/* Estilos para los elementos de Markdown */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    line-height: 1.2;
+    page-break-after: avoid; 
+}
+
+h1 { font-size: 24pt; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+h2 { font-size: 18pt; }
+h3 { font-size: 14pt; }
+
+p {
+    margin-top: 0;
+    margin-bottom: 1em; /* Un "Enter" (párrafo) tendrá más espacio */
+    text-align: justify;
+    widows: 3; /* Evita que queden líneas sueltas al principio o final de página */
+    orphans: 3;
+}
+
+ul, ol {
+    padding-left: 25px;
+    margin-bottom: 1em;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+blockquote {
+    border-left: 4px solid #e0e0e0;
+    padding-left: 20px;
+    margin: 1.5em 0;
+    color: #333;
+    font-style: italic;
+}
+
+code {
+    font-family: 'DejaVu Sans Mono', monospace;
+    background-color: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+pre {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    page-break-inside: avoid;
+}
+
+/* --- ESTILOS PARA IMÁGENES --- */
+img {
+    /* La imagen nunca será más ancha que el espacio disponible en la página */
+    max-width: 100%; 
+    
+    /* El alto se ajusta automáticamente para mantener la proporción */
+    height: auto;    
+    
+    /* Centra la imagen y le da espacio */
+    display: block;  
+    margin: 1.2em auto;
+    
+    /* Evita que una imagen se corte entre dos páginas */
+    page-break-inside: avoid; 
+}
+
+/* Para tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5em;
+    page-break-inside: avoid;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}

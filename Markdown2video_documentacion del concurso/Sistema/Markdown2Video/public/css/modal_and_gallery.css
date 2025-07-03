@@ -1,0 +1,232 @@
+/* --- ESTILOS PARA EL BOTÓN, MODAL Y GALERÍA DE IMÁGENES (CORREGIDO) --- */
+
+/* Contenedor para los controles del editor */
+.editor-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Botón de icono para abrir el modal */
+.icon-btn {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  font-size: 1.1em;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #555;
+  transition: all 0.2s ease;
+
+  /* --- CORRECCIÓN: Se añade z-index para asegurar que esté por encima --- */
+  position: relative; 
+  z-index: 99;      
+}
+.icon-btn:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+/* Fondo oscuro del modal */
+.modal-overlay {
+  /* display: none; -> Se controla desde JS, quitado de aquí */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex; /* Se mantiene para centrar el contenido */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Debe ser más alto que cualquier otra cosa en la página */
+}
+
+/* Contenido del modal */
+.modal-content {
+  background-color: #fff;
+  padding: 25px 35px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 850px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.modal-content h2 {
+  margin-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  line-height: 1;
+}
+.modal-close:hover { color: #000; }
+
+.modal-body {
+  display: flex;
+  flex-wrap: wrap; /* Para pantallas pequeñas */
+  gap: 30px;
+}
+.upload-section { flex: 1; min-width: 250px; }
+.gallery-section { flex: 2; min-width: 300px; border-left: 1px solid #eee; padding-left: 30px; }
+
+/* Estilos del formulario de subida */
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9em; }
+.form-group input[type="text"],
+.form-group input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.form-group small {
+    display: block;
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 4px;
+}
+
+.submit-btn {
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.submit-btn:hover { background-color: #218838; }
+.submit-btn:disabled { background-color: #94d3a2; cursor: not-allowed; }
+
+.status-message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    display: none; /* Se mostrará con JS */
+}
+.status-message.success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;}
+.status-message.error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;}
+
+
+/* Estilos de la galería de imágenes */
+.image-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 15px;
+}
+.gallery-item {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.gallery-item img {
+  width: 100%;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 8px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+.gallery-item-name {
+  font-size: 0.85em;
+  word-break: break-all;
+  font-family: monospace;
+  color: #333;
+  margin-bottom: 8px;
+}
+.gallery-item-actions {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+.gallery-item-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 2px 4px;
+    transition: color 0.2s;
+}
+.gallery-item-actions button.copy { color: #007bff; }
+.gallery-item-actions button.copy:hover { color: #0056b3; }
+.gallery-item-actions button.delete { color: #dc3545; }
+.gallery-item-actions button.delete:hover { color: #a71d2a; }
+
+/* --- ESTILOS PARA EL NUEVO MODAL DE COPIADO --- */
+
+.copy-modal-content {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.copy-modal-content h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.copy-modal-content p {
+  font-size: 0.9em;
+  color: #6c757d;
+  margin-bottom: 15px;
+}
+
+#syntaxToCopy {
+  width: 100%;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 1.1em;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  background-color: #e9ecef;
+  text-align: center;
+  margin-bottom: 20px;
+  box-sizing: border-box; /* Importante */
+}
+
+.copy-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.copy-modal-actions .cancel-btn {
+  background-color: #6c757d;
+}
+.copy-modal-actions .cancel-btn:hover {
+  background-color: #5c636a;
+}
+
+.copy-status {
+    display: block;
+    margin-top: 15px;
+    height: 1em; /* Para que no salte el layout */
+    font-size: 0.9em;
+    color: #198754;
+    font-weight: bold;
+}
